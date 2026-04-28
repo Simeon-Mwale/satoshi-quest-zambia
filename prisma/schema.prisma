@@ -1,0 +1,70 @@
+// prisma/schema.prisma
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+
+model User {
+  id                String   @id @default(cuid())
+  username          String   @unique
+  totalXP           Int      @default(0)
+  totalSats         Int      @default(0)
+  streak            Int      @default(0)
+  lastActivityDate  String?
+  level             Int      @default(1)
+  language          String   @default("en")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  completedLessons  CompletedLesson[]
+  completedModules  CompletedModule[]
+  quizScores        QuizScore[]
+  badges            Badge[]
+}
+
+model CompletedLesson {
+  id        String   @id @default(cuid())
+  lessonId  String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, lessonId])
+}
+
+model CompletedModule {
+  id        String   @id @default(cuid())
+  moduleId  String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, moduleId])
+}
+
+model QuizScore {
+  id        String   @id @default(cuid())
+  lessonId  String
+  score     Int
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, lessonId])
+}
+
+model Badge {
+  id        String   @id @default(cuid())
+  name      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, name])
+}
