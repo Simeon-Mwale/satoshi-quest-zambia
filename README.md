@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ⚡ SatoshiQuest Zambia
 
 > **Gamified Bitcoin education for Zambia — Learn in English & Bemba, Earn Sats**
@@ -200,3 +201,7 @@ GitHub: [github.com/Simeon-Mwale](https://github.com/Simeon-Mwale)
 Fiverr: [@simeonmwale334](https://fiverr.com/simeonmwale334)  
 
 *"Bitcoin education for every Zambian — from Lusaka to Lundazi."*
+=======
+# satoshi-quest-zambia
+⚡ Gamified Bitcoin (Lightning) quest platform for Zambia. Earn sats by completing real-world and digital challenges.
+>>>>>>> cecbc38efb7cc12bbc273437d77808d1a8ab00e8
